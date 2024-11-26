@@ -5,38 +5,6 @@ Este sistema organiza el flujo de trabajo para la integración continua (CI) y e
 ![Diagrama del Sistema de CI/CD y Componentes de Código](/images/g4.png)
 
 ---
-
-## Componentes Principales
-
-### 1. CI/CD Pipeline
-- **Archivo `build.yml`**:
-  - Define las etapas del pipeline, incluyendo:
-    - Configuración del entorno Python.
-    - Instalación de dependencias.
-    - Ejecución de pruebas unitarias con `pytest`.
-    - Análisis estático con SonarCloud.
-
-### 2. Código Fuente
-- **`src/module.py`**:
-  - Contiene la función `calculate_rectangle_area` con validaciones.
-- **`tests/test_module.py`**:
-  - Incluye pruebas unitarias específicas para validar `calculate_rectangle_area`.
-
-### 3. Configuración
-- **`sonar-project.properties`**:
-  - Contiene configuraciones necesarias para SonarCloud.
-- **`requirements.txt`**:
-  - Lista las dependencias requeridas (`pytest`, `pytest-cov`).
-
----
-
-## Relaciones
-1. **Pruebas Unitarias**:
-   - `tests/test_module.py` depende del archivo `src/module.py` para realizar las validaciones.
-2. **Pipeline CI/CD**:
-   - Ejecuta pruebas unitarias y análisis estático.
-   - Usa `requirements.txt` para instalar dependencias.
-   - Aplica configuraciones de `sonar-project.properties` para SonarCloud.
 ---
 
 ## Descripción del Funcionamiento del Pipeline
@@ -75,6 +43,8 @@ Este proyecto utiliza un **pipeline de integración continua (CI)** configurado 
     1. Probar con valores válidos (ejemplo: `width=5`, `height=10`).
     2. Verificar que se lanza un error si los valores son negativos o iguales a cero.
     3. Comprobar el resultado con valores grandes o extremos.
+    4. Verificar que se lanza un error si el ancho es cero.
+    5. Verificar que se lanza un error si la altura es cero.
 
 ---
 
