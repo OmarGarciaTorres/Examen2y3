@@ -1,4 +1,5 @@
 import pytest
+import pytest
 from src.module import calculate_rectangle_area
 
 def test_valid_rectangle_area():
