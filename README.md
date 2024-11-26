@@ -63,6 +63,10 @@ Este tutorial te guiará en la creación de un sistema de integración y entrega
 
 ---
 ---
+---
+---
+---
+---
 # Parte 1.1: Configuración del Repositorio y GitHub Actions
 
 ## Paso 1: Crear el repositorio en GitHub
