@@ -37,6 +37,65 @@ Este sistema organiza el flujo de trabajo para la integración continua (CI) y e
    - Ejecuta pruebas unitarias y análisis estático.
    - Usa `requirements.txt` para instalar dependencias.
    - Aplica configuraciones de `sonar-project.properties` para SonarCloud.
+---
+
+## Descripción del Funcionamiento del Pipeline
+
+Este proyecto utiliza un **pipeline de integración continua (CI)** configurado en **GitHub Actions** para ejecutar pruebas automáticas y analizar la calidad del código. A continuación, se explica el flujo completo:
+
+---
+
+### **1. GitHub Actions**
+- **Qué hace:** 
+  - Automatiza la ejecución de las pruebas y el análisis del código cada vez que haces un cambio (push) o abres/modificas un Pull Request.
+- **Cómo lo hace:**
+  - El archivo `build.yml` en la carpeta `.github/workflows` define los pasos que se ejecutan:
+    1. **Descarga del código:** Clona el repositorio para acceder al código.
+    2. **Instalación del entorno:** Configura Python y las dependencias necesarias desde `requirements.txt`.
+    3. **Ejecución de pruebas:** Usa `pytest` para verificar que la lógica del código funcione correctamente.
+    4. **Análisis estático:** Envía datos a **SonarCloud** para evaluar la calidad del código (como complejidad, errores y cobertura).
+
+---
+
+### **2. Lógica Principal (`module.py`)**
+- **Qué hace:** 
+  - Contiene la función principal `calculate_rectangle_area` que calcula el área de un rectángulo.
+- **Cómo lo hace:**
+  - Recibe dos valores (`width` y `height`) y realiza estas validaciones:
+    1. Si alguno de los valores es menor o igual a 0, lanza un error (`ValueError`).
+    2. Si los valores son válidos, devuelve el área como resultado de multiplicar ancho por altura.
+
+---
+
+### **3. Pruebas Unitarias (`test_module.py`)**
+- **Qué hacen:** 
+  - Verifican que la función principal (`calculate_rectangle_area`) funcione correctamente en diferentes escenarios.
+- **Cómo lo hacen:**
+  - Usan `pytest` para ejecutar pruebas con datos específicos. Ejemplos:
+    1. Probar con valores válidos (ejemplo: `width=5`, `height=10`).
+    2. Verificar que se lanza un error si los valores son negativos o iguales a cero.
+    3. Comprobar el resultado con valores grandes o extremos.
+
+---
+
+### **4. SonarCloud**
+- **Qué hace:** 
+  - Analiza el código para detectar posibles problemas de calidad, como:
+    1. Errores potenciales.
+    2. Complejidad del código.
+    3. Cobertura de las pruebas (qué porcentaje del código está probado).
+- **Cómo lo hace:**
+  - El pipeline envía los resultados de las pruebas y la cobertura a SonarCloud usando las credenciales configuradas en `SONAR_TOKEN`.
+
+---
+
+### **Flujo Completo**
+1. Haces un cambio (push) o creas un Pull Request en GitHub.
+2. GitHub Actions ejecuta el pipeline:
+   - Instala dependencias.
+   - Corre las pruebas unitarias con `pytest`.
+   - Analiza el código con SonarCloud.
+3. Si todo pasa, verás un ✅ verde en "Actions". Si algo falla, verás un ❌ rojo con detalles del error.
 
 ---
 # Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
