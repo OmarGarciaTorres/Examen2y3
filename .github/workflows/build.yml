@@ -1,22 +1,41 @@
-name: Build
+name: Build, Test, and Analyze
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
-  sonarcloud:
-    name: SonarQube Cloud
+  build-and-analyze:
+    name: Run Tests and SonarCloud Analysis
     runs-on: ubuntu-latest
+
     steps:
+      # Paso 1: Checkout del repositorio
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarQube Cloud Scan
+          fetch-depth: 0  # Clonar todo el historial para análisis preciso
+
+      # Paso 2: Configuración de Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      # Paso 3: Instalar dependencias
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Paso 4: Ejecutar pruebas unitarias
+      - name: Run unit tests
+        run: |
+          pytest --junitxml=test-results.xml --cov=. --cov-report=xml
+
+      # Paso 5: Ejecutar análisis estático en SonarCloud
+      - name: SonarCloud Analysis
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token para acceder a datos del repo (PRs, commits)
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Token generado desde SonarCloud
