@@ -420,25 +420,13 @@ Un documento que describa:
 ### **Análisis de Riesgos**
 
 #### **Riesgos Identificados**
-| **ID** | **Riesgo**                                                                     | **Probabilidad** | **Impacto** | **Categoría**          |
-|--------|--------------------------------------------------------------------------------|------------------|-------------|------------------------|
-| R1     | Configuración incorrecta de GitHub Actions que impida ejecutar el pipeline.   | Media            | Alta        | CI/CD                 |
-| R2     | Dependencias faltantes o mal definidas en `requirements.txt`.                  | Baja             | Alta        | Técnico               |
-| R3     | Errores en los tests unitarios debido a cambios en el código base.             | Alta             | Media       | Pruebas               |
-| R4     | Baja cobertura de pruebas en funcionalidades críticas.                         | Media            | Alta        | Calidad               |
-| R5     | Dificultades en la integración con SonarCloud por problemas de configuración. | Media            | Media       | Tecnológico           |
-
----
-
-### **Evaluación de Riesgos**
-
-| **ID** | **Descripción del Riesgo**                                     | **Probabilidad** | **Impacto** | **Nivel de Riesgo** |
-|--------|----------------------------------------------------------------|------------------|-------------|---------------------|
-| R1     | Configuración incorrecta de GitHub Actions.                    | Media            | Alta        | Alta                |
-| R2     | Dependencias faltantes o mal definidas.                        | Baja             | Alta        | Media               |
-| R3     | Errores en los tests unitarios.                                | Alta             | Media       | Alta                |
-| R4     | Baja cobertura de pruebas.                                     | Media            | Alta        | Alta                |
-| R5     | Problemas en la integración con SonarCloud.                    | Media            | Media       | Media               |
+| **ID** | **Riesgo**                                                                     | **Probabilidad** | **Impacto** | **Categoría**          | **Nivel de Riesgo** |
+|--------|--------------------------------------------------------------------------------|------------------|-------------|------------------------|---------------------|
+| R1     | Configuración incorrecta de GitHub Actions que impida ejecutar el pipeline.   | Media            | Alta        | CI/CD                 | Alta                |
+| R2     | Dependencias faltantes o mal definidas en `requirements.txt`.                  | Baja             | Alta        | Técnico               |Media               |
+| R3     | Errores en los tests unitarios debido a cambios en el código base.             | Alta             | Media       | Pruebas               |Alta                |
+| R4     | Baja cobertura de pruebas en funcionalidades críticas.                         | Media            | Alta        | Calidad               | Alta                |
+| R5     | Dificultades en la integración con SonarCloud por problemas de configuración. | Media            | Media       | Tecnológico           | Media               |
 
 ---
 
