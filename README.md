@@ -390,6 +390,14 @@ Coverage
 Duplicatons
 ![Duplications](/images/g7.PNG)
   
+Los resultados fueron perfectos sin ningun error a corregir por el momento.
+
+Posibles errores que se pueden tener: 
+
+---
+---
+---
+
 
 
 
