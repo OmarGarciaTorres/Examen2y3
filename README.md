@@ -383,6 +383,11 @@ Tareas:
 mejora.
 - Realiza refactorizaciones en el código basadas en los resultados obtenidos.
 
+![Overview](/images/g5.PNG)
+![Coverage](/images/g6.PNG)
+![Duplications](/images/g7.PNG)
+  
+
 
 
 
