@@ -382,9 +382,12 @@ Tareas:
 - Analiza las métricas obtenidas y discútelas con el equipo para identificar áreas de
 mejora.
 - Realiza refactorizaciones en el código basadas en los resultados obtenidos.
-
+## Resultados
+Overview con issues
 ![Overview](/images/g5.PNG)
+Coverage
 ![Coverage](/images/g6.PNG)
+Duplicatons
 ![Duplications](/images/g7.PNG)
   
 
