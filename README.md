@@ -756,5 +756,6 @@ while True:
 ```
 ---
 # Se uso la herramientaa de revisión de código GitHub Pull Requests
-![image](https://github.com/user-attachments/assets/e9d1aa01-6b8d-45c5-8583-11e08fe6a39c)
+![image](/images/g8.PNG)
+![image](/images/g9.PNG)
 
