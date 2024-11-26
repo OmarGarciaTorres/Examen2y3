@@ -39,7 +39,7 @@ Este sistema organiza el flujo de trabajo para la integración continua (CI) y e
    - Aplica configuraciones de `sonar-project.properties` para SonarCloud.
 
 ---
-### Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
+# Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
 Este tutorial te guiará en la creación de un sistema de integración y entrega continua (CI/CD), pruebas unitarias, análisis estático de código y herramientas de control de configuración para gestionar artefactos del software.
 
 
