@@ -42,6 +42,25 @@ Este sistema organiza el flujo de trabajo para la integración continua (CI) y e
 # Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
 Este tutorial te guiará en la creación de un sistema de integración y entrega continua (CI/CD), pruebas unitarias, análisis estático de código y herramientas de control de configuración para gestionar artefactos del software.
 
+## 1.1 Sistemas de Control de Calidad
+**Descripción:** Configurar un pipeline de CI/CD para compilar, ejecutar pruebas y realizar análisis estático de código con herramientas como GitHub Actions y SonarQube.
+
+**Resultado esperado:** Pipeline automatizado que valide la calidad del software en cada commit.
+
+---
+
+## 1.2 Pruebas
+**Descripción:** Diseñar y ejecutar pruebas unitarias con frameworks como pytest para verificar funcionalidad, límites y regresión.
+
+**Resultado esperado:** Conjunto de pruebas ejecutadas con resultados documentados.
+
+---
+
+## 1.3 Control de Configuración
+**Descripción:** Implementar un flujo de trabajo con Git que incluya ramas, pull requests y revisiones de código para gestionar cambios y versiones.
+
+**Resultado esperado:** Repositorio organizado con control de versiones y flujo de trabajo colaborativo.
+
 
 ---
 # Parte 1.1: Configuración del Repositorio y GitHub Actions
