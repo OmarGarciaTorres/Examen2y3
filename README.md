@@ -192,7 +192,7 @@ Realizar pruebas unitarias para garantizar que el software cumple con los requis
 1. **Carpeta `src`**:
    - Dentro de esta carpeta, crea un archivo llamado `module.py`.
    - Este archivo contendrá las funciones principales del proyecto.
-   - Ejemplo de una función en `module.py`:
+   - Ejemplo de contenido en `module.py`:
      ```python
      def calculate_rectangle_area(width, height):
          """
@@ -212,7 +212,7 @@ Realizar pruebas unitarias para garantizar que el software cumple con los requis
 3. **Carpeta `tests`**:
    - Dentro de esta carpeta, crea un archivo llamado `test_module.py`.
    - Este archivo contendrá las pruebas unitarias para las funciones implementadas en `module.py`.
-   - Ejemplo de pruebas unitarias para la función `calculate_rectangle_area`:
+   - Ejemplo de contenido en `calculate_rectangle_area`:
      ```python
      import pytest
      from src.module import calculate_rectangle_area
