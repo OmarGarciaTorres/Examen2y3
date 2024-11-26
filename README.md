@@ -38,10 +38,7 @@ El pipeline realiza las siguientes tareas:
    - Reportes de pruebas unitarias y cobertura.
    - Análisis estático enviado automáticamente a **SonarCloud**.
 
-**Imágenes sugeridas**:
-- Una captura de los resultados de **SonarCloud**, mostrando:
-  - La cobertura alcanzada.
-  - Los problemas detectados (si los hay).
+![](images/g3.PNG)
 
 ---
 
