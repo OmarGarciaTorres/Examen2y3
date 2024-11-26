@@ -1,3 +1,49 @@
+# Sistema de CI/CD y Componentes de Código
+
+Este sistema organiza el flujo de trabajo para la integración continua (CI) y el desarrollo continuo (CD), estructurado en tres componentes principales: el pipeline, el código fuente, y la configuración.
+
+![Diagrama del Sistema de CI/CD y Componentes de Código](/images)
+
+---
+
+## Componentes Principales
+
+### 1. CI/CD Pipeline
+- **Archivo `build.yml`**:
+  - Define las etapas del pipeline, incluyendo:
+    - Configuración del entorno Python.
+    - Instalación de dependencias.
+    - Ejecución de pruebas unitarias con `pytest`.
+    - Análisis estático con SonarCloud.
+
+### 2. Código Fuente
+- **`src/module.py`**:
+  - Contiene la función `calculate_rectangle_area` con validaciones.
+- **`tests/test_module.py`**:
+  - Incluye pruebas unitarias específicas para validar `calculate_rectangle_area`.
+
+### 3. Configuración
+- **`sonar-project.properties`**:
+  - Contiene configuraciones necesarias para SonarCloud.
+- **`requirements.txt`**:
+  - Lista las dependencias requeridas (`pytest`, `pytest-cov`).
+
+---
+
+## Relaciones
+1. **Pruebas Unitarias**:
+   - `tests/test_module.py` depende del archivo `src/module.py` para realizar las validaciones.
+2. **Pipeline CI/CD**:
+   - Ejecuta pruebas unitarias y análisis estático.
+   - Usa `requirements.txt` para instalar dependencias.
+   - Aplica configuraciones de `sonar-project.properties` para SonarCloud.
+
+---
+###Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
+Este tutorial te guiará en la creación de un sistema de integración y entrega continua (CI/CD), pruebas unitarias, análisis estático de código y herramientas de control de configuración para gestionar artefactos del software.
+
+
+---
 # Parte 1.1: Configuración del Repositorio y GitHub Actions
 
 ## Paso 1: Crear el repositorio en GitHub
