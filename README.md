@@ -140,19 +140,20 @@ sonar.projectKey=your_project_key
 sonar.organization=your_organization
 sonar.host.url=https://sonarcloud.io
 
-# Directorios de código fuente y pruebas
-sonar.sources=src
-sonar.tests=tests
-sonar.test.inclusions=tests/**/*.py
+# Opcional: Nombre y versión del proyecto
+sonar.projectName=name_proyect
+sonar.projectVersion=1.0
 
-# Configuración de cobertura
-sonar.python.coverage.reportPaths=coverage.xml
+# Configuración de rutas
+sonar.sources=.
+sonar.tests=tests
+sonar.test.inclusions=**/tests/**
+
+# Codificación del proyecto
+sonar.sourceEncoding=UTF-8
 
 
 ```
-- `sonar.projectKey`: El identificador único de tu proyecto en SonarCloud.
-- `sonar.organization`: Tu organización registrada en SonarCloud.
-- `sonar.python.coverage.reportPaths`: Asegúrate de que apunte al archivo de cobertura generado por `pytest`.
 
 ---
 
