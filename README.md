@@ -370,7 +370,7 @@ Aplicar un flujo de control de versiones utilizando **Git** y **GitHub** para ge
 5. Haz clic en `Create pull request`.
 
 ---
-#Parte 2 Avtividades Complementarias
+# Parte 2 Avtividades Complementarias
 
 ---
 Descripción: Usa herramientas como SonarQube o Jacoco para obtener métricas de
