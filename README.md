@@ -199,6 +199,7 @@ jobs:
 1. Realiza un commit o un push de cualquier archivo en la rama `main` para activar el workflow.
 2. Accede a la pestaña `Actions` en tu repositorio.
 3. Verifica que el workflow se ejecute automáticamente y revisa los resultados de la ejecución.
+![Act](/images/g10.png)
 
 ---
 
