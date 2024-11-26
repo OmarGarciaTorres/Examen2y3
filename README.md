@@ -454,9 +454,6 @@ Un documento que describa:
 
 ---
 
-Este análisis ayuda a garantizar que los posibles problemas técnicos y de configuración sean manejados proactivamente para mantener la calidad del software. 
-
-
 
 
 
