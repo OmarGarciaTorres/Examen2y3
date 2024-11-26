@@ -2,7 +2,7 @@
 
 Este sistema organiza el flujo de trabajo para la integración continua (CI) y el desarrollo continuo (CD), estructurado en tres componentes principales: el pipeline, el código fuente, y la configuración.
 
-![Diagrama del Sistema de CI/CD y Componentes de Código](/images)
+![Diagrama del Sistema de CI/CD y Componentes de Código](/images/g4.png)
 
 ---
 
@@ -39,7 +39,7 @@ Este sistema organiza el flujo de trabajo para la integración continua (CI) y e
    - Aplica configuraciones de `sonar-project.properties` para SonarCloud.
 
 ---
-###Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
+### Tutorial: Cómo Implementar el Sistema de CI/CD y Configuración del Proyecto
 Este tutorial te guiará en la creación de un sistema de integración y entrega continua (CI/CD), pruebas unitarias, análisis estático de código y herramientas de control de configuración para gestionar artefactos del software.
 
 
