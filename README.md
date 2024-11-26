@@ -177,4 +177,96 @@ sonar.sourceEncoding=UTF-8
    - **Cobertura de código**: Verifica el porcentaje de líneas de código cubiertas por las pruebas.
    - **Errores**: Identifica problemas de compilación o configuración en el análisis.
    - **Vulnerabilidades**: Examina posibles riesgos de seguridad en tu código.
+  
+---
+
+## Parte 1.2: Diseño y Ejecución de Pruebas
+
+### Objetivo
+Realizar pruebas unitarias para garantizar que el software cumple con los requisitos funcionales y no funcionales.
+
+---
+
+### Paso 1: Crear la estructura del proyecto
+
+1. **Carpeta `src`**:
+   - Dentro de esta carpeta, crea un archivo llamado `module.py`.
+   - Este archivo contendrá las funciones principales del proyecto.
+   - Ejemplo de una función en `module.py`:
+     ```python
+     def calculate_rectangle_area(width, height):
+         """
+         Calcula el área de un rectángulo.
+
+         :param width: Ancho del rectángulo (debe ser positivo)
+         :param height: Altura del rectángulo (debe ser positivo)
+         :return: Área del rectángulo
+         """
+         if width <= 0 or height <= 0:
+             raise ValueError("El ancho y la altura deben ser positivos.")
+         return width * height
+     ```
+
+   
+
+3. **Carpeta `tests`**:
+   - Dentro de esta carpeta, crea un archivo llamado `test_module.py`.
+   - Este archivo contendrá las pruebas unitarias para las funciones implementadas en `module.py`.
+   - Ejemplo de pruebas unitarias para la función `calculate_rectangle_area`:
+     ```python
+     import pytest
+     from src.module import calculate_rectangle_area
+
+     def test_valid_rectangle_area():
+         """Prueba con valores válidos de ancho y altura."""
+         assert calculate_rectangle_area(5, 10) == 50
+
+     def test_zero_width():
+         """Prueba cuando el ancho es cero."""
+         with pytest.raises(ValueError):
+             calculate_rectangle_area(0, 10)
+
+     def test_zero_height():
+         """Prueba cuando la altura es cero."""
+         with pytest.raises(ValueError):
+             calculate_rectangle_area(5, 0)
+
+     def test_negative_dimensions():
+         """Prueba con dimensiones negativas."""
+         with pytest.raises(ValueError):
+             calculate_rectangle_area(-5, -10)
+
+     def test_large_values():
+         """Prueba con valores grandes."""
+         assert calculate_rectangle_area(1_000_000, 2_000_000) == 2_000_000_000_000
+     ```
+
+4. **Archivo `requirements.txt`**:
+   - Este archivo debe estar en la raíz del proyecto.
+   - Contendrá las dependencias necesarias para el proyecto.
+   - Ejemplo de contenido para `requirements.txt`:
+     ```
+     pytest
+     pytest-cov
+     ```
+### Verificar que todo esté bien
+
+1. **Revisión en GitHub Actions:**
+   - Ve a la pestaña `Actions` en tu repositorio.
+   - Asegúrate de que el workflow se haya ejecutado correctamente tras el último commit o pull request.
+   - Revisa los logs del pipeline para confirmar que las pruebas se ejecutaron sin errores y que la cobertura se reportó correctamente.
+
+2. **Revisión en SonarCloud:**
+   - Accede a tu proyecto en [SonarCloud](https://sonarcloud.io).
+   - Verifica las métricas del análisis estático, como:
+     - **Cobertura de código**: Revisa el porcentaje de líneas cubiertas por pruebas.
+     - **Errores y vulnerabilidades**: Asegúrate de que no se detecten problemas críticos en el código.
+
+3. **Confirmación final:**
+   - Si todo está correcto en GitHub Actions y SonarCloud, considera este proceso exitoso.
+   - Realiza ajustes en el código y repite las pruebas si encuentras errores o áreas de mejora.
+
+---
+
+
 
