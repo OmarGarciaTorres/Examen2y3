@@ -267,6 +267,41 @@ Realizar pruebas unitarias para garantizar que el software cumple con los requis
    - Realiza ajustes en el código y repite las pruebas si encuentras errores o áreas de mejora.
 
 ---
+## Parte 1.3: Control de Configuración
+
+### Objetivo
+Aplicar un flujo de control de versiones utilizando **Git** y **GitHub** para gestionar cambios en el software de manera organizada y eficiente.
+
+---
+
+### Paso 1: Crear ramas para nuevas características
+
+1. Utiliza **Git** para crear ramas independientes para cada nueva funcionalidad.
+2. Ejemplos de ramas creadas:
+   - `feature/add-error-handling`: Para agregar manejo de errores.
+   - `feature/improve-coverage`: Para mejorar la cobertura de pruebas.
+
+### Paso 2: Modificar el código y añadir pruebas
+
+1. Realiza los cambios necesarios en el archivo `module.py` para implementar la funcionalidad en la rama correspondiente.
+2. Añade o modifica pruebas unitarias en el archivo `test_module.py` para cubrir los nuevos cambios.
+3. Verifica que los cambios funcionan correctamente ejecutando las pruebas con el siguiente comando:
+   ```bash
+   pytest --cov=src
+
+### Paso 3: Crear un Pull Request (PR)
+
+1. Una vez que hayas terminado los cambios en la rama, ve a tu repositorio en GitHub.
+2. En la página principal del repositorio, verás un aviso para comparar y crear un Pull Request si has subido una nueva rama.
+3. Haz clic en `Compare & pull request`.
+4. En la página de creación del Pull Request:
+   - Asegúrate de que la rama base sea `main` y que la rama de comparación sea la que contiene tus cambios.
+   - Escribe un título descriptivo para el Pull Request.
+   - Agrega una descripción detallada explicando los cambios realizados y su propósito.
+5. Haz clic en `Create pull request`.
+
+
+
 
 
 
