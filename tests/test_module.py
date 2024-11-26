@@ -23,3 +23,8 @@ def test_negative_dimensions():
 def test_large_values():
     """Prueba con valores grandes."""
     assert calculate_rectangle_area(1_000_000, 2_000_000) == 2_000_000_000_000
+    
+def test_invalid_types():
+    """Prueba con tipos inválidos (no numéricos)."""
+    with pytest.raises(TypeError):
+        calculate_rectangle_area("a", "b")
