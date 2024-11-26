@@ -6,6 +6,5 @@ def calculate_rectangle_area(width, height):
     :param height: Altura del rectángulo (debe ser positivo)
     :return: Área del rectángulo
     """
-    if width <= 0 or height <= 0:
-        raise ValueError("El ancho y la altura deben ser positivos.")
-    return width * height
+   if not isinstance(width, (int, float)) or not isinstance(height, (int, float)):
+    raise TypeError("El ancho y la altura deben ser números.")
