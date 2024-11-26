@@ -23,7 +23,7 @@ El pipeline realiza las siguientes tareas:
 2. Ejecuta pruebas unitarias con cobertura.
 3. Ejecuta análisis estático de código con SonarCloud.
 ## Resultados del Pipeline
-![Pipeline (buil.yml)](images/g2.png)
+![Pipeline (buil.yml)](images/g.2.png)
 ![Ejecución exitosa del pipeline](images/g1.png)
 
 
