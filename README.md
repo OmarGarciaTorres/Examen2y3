@@ -392,11 +392,70 @@ Duplicatons
   
 Los resultados fueron perfectos sin ningun error a corregir por el momento.
 
-Posibles errores que se pueden tener: 
+---
+---
+---
+## 2.2 Control de Riesgos
+
+### Objetivo
+Identificar, evaluar y mitigar los riesgos asociados al desarrollo de software.
+
+### Actividad: Gestión de Riesgos en el Proyecto
+#### Descripción
+Se realizó un análisis de riesgos para este proyecto, considerando posibles problemas que puedan surgir durante su desarrollo, como cambios en los requisitos, problemas técnicos o fallos en la configuración del pipeline de integración continua (CI/CD).
+
+#### Tareas Realizadas
+1. Identificación de riesgos relacionados con el desarrollo y la calidad del software.
+2. Evaluación de la probabilidad e impacto de cada riesgo utilizando una matriz de riesgos.
+3. Desarrollo de planes de mitigación para los riesgos más críticos.
+
+#### Resultados Esperados
+Un documento que describa:
+- Los riesgos identificados.
+- Su evaluación (probabilidad e impacto).
+- Los planes de mitigación.
 
 ---
+
+### **Análisis de Riesgos**
+
+#### **Riesgos Identificados**
+| **ID** | **Riesgo**                                                                     | **Probabilidad** | **Impacto** | **Categoría**          |
+|--------|--------------------------------------------------------------------------------|------------------|-------------|------------------------|
+| R1     | Configuración incorrecta de GitHub Actions que impida ejecutar el pipeline.   | Media            | Alta        | CI/CD                 |
+| R2     | Dependencias faltantes o mal definidas en `requirements.txt`.                  | Baja             | Alta        | Técnico               |
+| R3     | Errores en los tests unitarios debido a cambios en el código base.             | Alta             | Media       | Pruebas               |
+| R4     | Baja cobertura de pruebas en funcionalidades críticas.                         | Media            | Alta        | Calidad               |
+| R5     | Dificultades en la integración con SonarCloud por problemas de configuración. | Media            | Media       | Tecnológico           |
+
 ---
+
+### **Evaluación de Riesgos**
+
+| **ID** | **Descripción del Riesgo**                                     | **Probabilidad** | **Impacto** | **Nivel de Riesgo** |
+|--------|----------------------------------------------------------------|------------------|-------------|---------------------|
+| R1     | Configuración incorrecta de GitHub Actions.                    | Media            | Alta        | Alta                |
+| R2     | Dependencias faltantes o mal definidas.                        | Baja             | Alta        | Media               |
+| R3     | Errores en los tests unitarios.                                | Alta             | Media       | Alta                |
+| R4     | Baja cobertura de pruebas.                                     | Media            | Alta        | Alta                |
+| R5     | Problemas en la integración con SonarCloud.                    | Media            | Media       | Media               |
+
 ---
+
+### **Planes de Mitigación**
+
+| **Riesgo**               | **Plan de Mitigación**                                                                                          |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------|
+| R1: Configuración CI/CD  | Validar la configuración del archivo `build.yml` y realizar pruebas locales antes de subir los cambios al repo. |
+| R2: Dependencias         | Verificar y actualizar regularmente el archivo `requirements.txt`.                                              |
+| R3: Errores en tests     | Implementar pruebas de regresión para detectar errores antes de fusionar cambios.                              |
+| R4: Baja cobertura       | Aumentar la cobertura con pruebas adicionales, especialmente para escenarios extremos y casos límite.           |
+| R5: Problemas SonarCloud | Revisar la configuración del archivo `sonar-project.properties` y validar la conexión con el servicio.          |
+
+---
+
+Este análisis ayuda a garantizar que los posibles problemas técnicos y de configuración sean manejados proactivamente para mantener la calidad del software. 
+
 
 
 
