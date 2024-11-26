@@ -1,0 +1,37 @@
+name: Build and Analyze
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Se recomienda clonar todo el historial para un análisis más preciso
+
+      - name: Set up JDK (required for SonarCloud)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Ajusta este comando si tu proyecto no usa Python
+
+      - name: Run tests
+        run: |
+          pytest --junitxml=test-results.xml --cov=. --cov-report=xml  # Ajusta según tu lenguaje de programación
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
