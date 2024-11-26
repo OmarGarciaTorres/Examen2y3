@@ -61,7 +61,7 @@ Este tutorial te guiará en la creación de un sistema de integración y entrega
 
 **Resultado esperado:** Repositorio organizado con control de versiones y flujo de trabajo colaborativo.
 
-
+---
 ---
 # Parte 1.1: Configuración del Repositorio y GitHub Actions
 
