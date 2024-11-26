@@ -369,7 +369,19 @@ Aplicar un flujo de control de versiones utilizando **Git** y **GitHub** para ge
    - Agrega una descripción detallada explicando los cambios realizados y su propósito.
 5. Haz clic en `Create pull request`.
 
+---
+#Parte 2 Avtividades Complementarias
 
+---
+Descripción: Usa herramientas como SonarQube o Jacoco para obtener métricas de
+calidad sobre el código, como la cobertura de código, complejidad ciclomática, y la
+densidad de defectos.
+
+Tareas:
+- Ejecuta SonarQube sobre tu código y obtén métricas de calidad.
+- Analiza las métricas obtenidas y discútelas con el equipo para identificar áreas de
+mejora.
+- Realiza refactorizaciones en el código basadas en los resultados obtenidos.
 
 
 
