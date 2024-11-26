@@ -22,10 +22,10 @@ El pipeline realiza las siguientes tareas:
 1. Instala dependencias.
 2. Ejecuta pruebas unitarias con cobertura.
 3. Ejecuta análisis estático de código con SonarCloud.
+## Resultados del Pipeline
+![Pipeline (buil.yml)](images/g2)
+![Ejecución exitosa del pipeline](images/g1)
 
-**Imágenes sugeridas**:
-- Una captura del pipeline configurado en el archivo `build.yml` desde GitHub.
-- Una captura del resultado de una ejecución exitosa del pipeline en la pestaña **Actions**.
 
 #### **Flujo de Trabajo**
 1. El pipeline se ejecuta automáticamente en los siguientes eventos:
