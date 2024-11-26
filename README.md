@@ -1,6 +1,6 @@
 # Aseguramiento de la Calidad del Software
 
-Este proyecto tiene como objetivo implementar prácticas y herramientas de calidad de software, siguiendo un enfoque sistemático para garantizar que cumple con los requisitos funcionales y no funcionales.
+Este proyecto tiene como objetivo implementar prácticas y herramientas para garantizar la calidad del software, utilizando técnicas como pruebas unitarias, integración continua y análisis estático de código.
 
 ---
 
@@ -12,32 +12,34 @@ Este proyecto tiene como objetivo implementar prácticas y herramientas de calid
 Familiarizarse con las prácticas y herramientas utilizadas para garantizar la calidad a lo largo del ciclo de vida del software.
 
 #### **Actividad: Implementación de un Sistema de Control de Calidad**
-En esta actividad se configuró un pipeline de integración continua (CI/CD) utilizando **GitHub Actions**, con los siguientes pasos clave:
-- Compilar el código y ejecutar pruebas automáticamente con cada commit.
-- Realizar un análisis estático de código con **SonarCloud** para detectar errores y problemas de calidad.
+En esta actividad, se configuró un pipeline de integración continua (CI/CD) utilizando **GitHub Actions** para automatizar tareas clave como:
+- Compilar el código.
+- Ejecutar pruebas unitarias.
+- Realizar análisis estático de código con **SonarCloud**.
 
 #### **Pipeline Configurado**
-El pipeline incluye:
-1. Instalación de dependencias.
-2. Ejecución de pruebas unitarias y generación de reportes.
-3. Análisis estático de código.
+El pipeline realiza las siguientes tareas:
+1. Instala dependencias.
+2. Ejecuta pruebas unitarias con cobertura.
+3. Ejecuta análisis estático de código con SonarCloud.
 
-![Pipeline](https://via.placeholder.com/800x400.png?text=Ejemplo+de+Pipeline)  
-_Imagen ilustrativa del pipeline configurado._
+**Imágenes sugeridas**:
+- Una captura del pipeline configurado en el archivo `build.yml` desde GitHub.
+- Una captura del resultado de una ejecución exitosa del pipeline en la pestaña **Actions**.
 
 #### **Flujo de Trabajo**
-1. El pipeline se activa con cada `push` o solicitud de extracción (`pull request`) a la rama `main`.
-2. Ejecuta automáticamente:
-   - Las pruebas unitarias usando `pytest`.
-   - El análisis estático con **SonarCloud**.
+1. El pipeline se ejecuta automáticamente en los siguientes eventos:
+   - Cada `push` a la rama principal (`main`).
+   - Cada solicitud de extracción (`pull request`) hacia la rama principal.
 
-![GitHub Actions](https://via.placeholder.com/800x400.png?text=Resultados+de+GitHub+Actions)  
-_Ejemplo de una ejecución exitosa del pipeline._
+2. Resultados generados:
+   - Reportes de pruebas unitarias y cobertura.
+   - Análisis estático enviado automáticamente a **SonarCloud**.
 
-#### **Resultados**
-- **Pruebas exitosas**: Todas las pruebas unitarias se ejecutan correctamente.
-- **Cobertura**: Se genera un reporte de cobertura y calidad de código en **SonarCloud**.
-- **Análisis estático**: SonarCloud detecta y reporta problemas de calidad en el código fuente.
+**Imágenes sugeridas**:
+- Una captura de los resultados de **SonarCloud**, mostrando:
+  - La cobertura alcanzada.
+  - Los problemas detectados (si los hay).
 
 ---
 
@@ -47,11 +49,11 @@ _Ejemplo de una ejecución exitosa del pipeline._
 Realizar diferentes tipos de pruebas para garantizar que el software cumple con los requisitos funcionales y no funcionales.
 
 #### **Actividad: Diseño y Ejecución de Pruebas**
-Se diseñaron y ejecutaron un conjunto de pruebas unitarias utilizando el framework **pytest** para la función `calculate_rectangle_area`.
+Se diseñó y ejecutó un conjunto de pruebas unitarias utilizando el framework **pytest** para validar la función `calculate_rectangle_area`.
 
 #### **Tareas Realizadas**
-1. **Diseño de pruebas unitarias**:
-   - Se cubrieron diferentes escenarios funcionales y de límites:
+1. **Diseño de pruebas**:
+   - Las pruebas cubrieron diferentes escenarios funcionales y límites:
      - Valores válidos.
      - Dimensiones cero.
      - Dimensiones negativas.
@@ -61,7 +63,7 @@ Se diseñaron y ejecutaron un conjunto de pruebas unitarias utilizando el framew
    - Las pruebas se ejecutaron tanto localmente como en el pipeline de CI/CD.
 
 3. **Pruebas de regresión**:
-   - Se verificó que los cambios recientes no afectaran funcionalidades existentes.
+   - Se verificó que los cambios recientes no afectaran funcionalidades ya implementadas.
 
 #### **Código de las Pruebas**
 
