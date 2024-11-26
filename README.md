@@ -1,166 +1,179 @@
-# Aseguramiento de la Calidad del Software
+# Parte 1.1: Configuración del Repositorio y GitHub Actions
 
-Este proyecto tiene como objetivo implementar prácticas y herramientas para garantizar la calidad del software, utilizando técnicas como pruebas unitarias, integración continua y análisis estático de código.
+## Paso 1: Crear el repositorio en GitHub
 
----
+### Accede a GitHub:
+- Inicia sesión en tu cuenta en GitHub.
 
-## **Parte 1: Aseguramiento de la Calidad del Software**
+### Crea un nuevo repositorio:
+1. Haz clic en el botón verde `New` (ubicado en la esquina superior derecha de tu página principal).
+2. Llena los campos necesarios:
+   - **Nombre del repositorio**: Por ejemplo, `quality-assurance-project`.
+   - **Descripción**: Opcional, pero puedes escribir algo como "Repositorio para práctica de aseguramiento de calidad de software".
+   - **Visibilidad**: Elige entre público o privado.
+3. Marca la casilla de `Add a README file` para inicializar el repositorio con un archivo `README.md`.
 
-### **1.1 Sistemas de Control de Calidad**
-
-#### **Objetivo**
-Familiarizarse con las prácticas y herramientas utilizadas para garantizar la calidad a lo largo del ciclo de vida del software.
-
-#### **Actividad: Implementación de un Sistema de Control de Calidad**
-En esta actividad, se configuró un pipeline de integración continua (CI/CD) utilizando **GitHub Actions** para automatizar tareas clave como:
-- Compilar el código.
-- Ejecutar pruebas unitarias.
-- Realizar análisis estático de código con **SonarCloud**.
-
-#### **Pipeline Configurado**
-El pipeline realiza las siguientes tareas:
-1. Instala dependencias.
-2. Ejecuta pruebas unitarias con cobertura.
-3. Ejecuta análisis estático de código con SonarCloud.
-## Resultados del Pipeline
-![Pipeline (buil.yml)](images/g1.PNG)
-
-
-![Ejecución exitosa del pipeline](images/g.2.PNG)
-
-
-#### **Flujo de Trabajo**
-1. El pipeline se ejecuta automáticamente en los siguientes eventos:
-   - Cada `push` a la rama principal (`main`).
-   - Cada solicitud de extracción (`pull request`) hacia la rama principal.
-
-2. Resultados generados:
-   - Reportes de pruebas unitarias y cobertura.
-   - Análisis estático enviado automáticamente a **SonarCloud**.
-
-![](images/g3.PNG)
+### Crea el repositorio:
+- Haz clic en el botón `Create repository`. Esto generará tu repositorio en GitHub.
 
 ---
 
-### **1.2 Pruebas**
+## Paso 2: Configuración de GitHub Actions
 
-#### **Objetivo**
-Realizar diferentes tipos de pruebas para garantizar que el software cumple con los requisitos funcionales y no funcionales.
+### Accede a la pestaña `Actions`:
+- En tu repositorio, localiza la pestaña `Actions` en la barra superior (junto a `Code` y `Issues`).
 
-#### **Actividad: Diseño y Ejecución de Pruebas**
-Se diseñó y ejecutó un conjunto de pruebas unitarias utilizando el framework **pytest** para validar la función `calculate_rectangle_area`.
+### Crear un workflow:
+1. GitHub te sugerirá plantillas predefinidas para diferentes lenguajes y entornos. En nuestro caso:
+   - Haz clic en `Set up a workflow yourself`.
+   - Esto creará un archivo con el nombre predeterminado `main.yml`.
 
-#### **Tareas Realizadas**
-1. **Diseño de pruebas**:
-   - Las pruebas cubrieron diferentes escenarios funcionales y límites:
-     - Valores válidos.
-     - Dimensiones cero.
-     - Dimensiones negativas.
-     - Valores extremos.
+### Ubicación del archivo del workflow:
+- El archivo creado estará en una carpeta llamada `.github/workflows/` dentro de tu repositorio. Si esta carpeta no existe, GitHub la creará automáticamente cuando guardes el archivo.
 
-2. **Ejecución de pruebas**:
-   - Las pruebas se ejecutaron tanto localmente como en el pipeline de CI/CD.
+### Renombrar y configurar tu workflow:
+1. Cambia el nombre del archivo a algo más descriptivo, como `ci-sonar.yml`. Para hacerlo:
+   - Haz clic en el icono del lápiz (editar) y edita el nombre en la parte superior.
+2. Reemplaza el contenido inicial del archivo con el siguiente código base:
 
-3. **Pruebas de regresión**:
-   - Se verificó que los cambios recientes no afectaran funcionalidades ya implementadas.
+```yaml
+name: Build, Test, and Analyze
 
-#### **Código de las Pruebas**
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
-Archivo `tests/test_module.py`:
-```python
-import pytest
-from src.module import calculate_rectangle_area
+jobs:
+  build-and-analyze:
+    name: Run Tests and SonarCloud Analysis
+    runs-on: ubuntu-latest
 
-def test_valid_rectangle_area():
-    assert calculate_rectangle_area(5, 10) == 50
+    steps:
+      # Paso 1: Checkout del repositorio
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Clonar todo el historial para análisis preciso
 
-def test_zero_width():
-    with pytest.raises(ValueError):
-        calculate_rectangle_area(0, 10)
+      # Paso 2: Configuración de Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
 
-def test_zero_height():
-    with pytest.raises(ValueError):
-        calculate_rectangle_area(5, 0)
+      # Paso 3: Instalar dependencias
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-def test_negative_dimensions():
-    with pytest.raises(ValueError):
-        calculate_rectangle_area(-5, -10)
+      # Paso 4: Ejecutar pruebas unitarias
+      - name: Run unit tests
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+          pytest --junitxml=test-results.xml --cov=src --cov-report=xml
 
-def test_large_values():
-    assert calculate_rectangle_area(1_000_000, 2_000_000) == 2_000_000_000_000
+      # Paso 5: Ejecutar análisis estático en SonarCloud
+      - name: SonarCloud Analysis
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token para acceder a datos del repo (PRs, commits)
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Token generado desde SonarCloud
+
+
+
 ```
-### **1.3 Control de Configuración**
+### Guardar el workflow:
 
-#### **Objetivo**
-Aplicar herramientas de control de configuración para gestionar las versiones y el estado de los artefactos del software.
-
----
-
-#### **Actividad: Gestión de Artefactos con Control de Versiones**
-
-Se implementó un flujo de trabajo basado en **Git** utilizando la interfaz de **GitHub** para realizar un seguimiento de versiones, desarrollar nuevas características y fusionar cambios en la rama principal.
+1. Una vez configurado, haz clic en el botón verde `Start Commit` (ubicado en la parte superior derecha).
+2. Selecciona `Commit directly to the main branch`.
+3. Haz clic en `Commit new file` para guardar los cambios.
 
 ---
 
-#### **Tareas Realizadas**
+### Paso 3: Validar la configuración
 
-1. **Creación de ramas para nuevas características (feature branches):**
-   - Se crearon ramas independientes para trabajar en nuevas funcionalidades:
-     - `feature/add-error-handling`: Agregar manejo de errores para entradas no válidas.
-     - `feature/improve-coverage`: Mejorar la cobertura de pruebas unitarias.
+#### Verifica que el archivo se haya creado correctamente:
+1. Ve a la sección `Code` en tu repositorio.
+2. Asegúrate de que exista la carpeta `.github/workflows` y que contenga el archivo `ci-sonar.yml`.
 
-2. **Modificación del código y pruebas en cada rama:**
-   - En la rama `feature/add-error-handling`, se realizaron los siguientes cambios:
-     - Agregado un manejo de errores para validar que las entradas sean numéricas:
-       ```python
-       if not isinstance(width, (int, float)) or not isinstance(height, (int, float)):
-           raise TypeError("El ancho y la altura deben ser números.")
-       ```
-     - Añadida una nueva prueba unitaria:
-       ```python
-       def test_invalid_types():
-           """Prueba con tipos inválidos (no numéricos)."""
-           with pytest.raises(TypeError):
-               calculate_rectangle_area("a", "b")
-       ```
-   - En la rama `feature/improve-coverage`, se añadieron más casos de prueba para garantizar una cobertura del 100%.
-
-3. **Creación de Pull Requests (PRs):**
-   - Se abrió un PR para cada rama con una descripción detallada de los cambios realizados:
-     - **PR 1:** "Add error handling for invalid types"
-       - Cambios: Agregar manejo de errores y una prueba para entradas no numéricas.
-     - **PR 2:** "Improve test coverage"
-       - Cambios: Incrementar la cobertura con pruebas adicionales.
-
-4. **Revisión y fusión de PRs:**
-   - Cada PR fue revisado y fusionado a la rama principal (`main`).
-   - Se eliminó cada rama después de la fusión para mantener limpio el repositorio.
-
-5. **Documentación de cambios:**
-   - Se creó un archivo `CHANGELOG.md` para registrar los cambios realizados:
-     ```markdown
-     # Changelog
-
-     ## [Unreleased]
-     ### Added
-     - Manejo de errores para entradas no numéricas.
-     - Pruebas adicionales para mejorar la cobertura.
-     ```
+#### Prueba inicial del pipeline:
+1. Realiza un commit o un push de cualquier archivo en la rama `main` para activar el workflow.
+2. Accede a la pestaña `Actions` en tu repositorio.
+3. Verifica que el workflow se ejecute automáticamente y revisa los resultados de la ejecución.
 
 ---
 
-#### **Resultado**
-- **Flujo de trabajo implementado:** Un sistema organizado de ramas y pull requests para integrar cambios.
-- **Cambios reflejados en la rama principal:**
-  - Mejora en el manejo de errores.
-  - Incremento en la cobertura de pruebas unitarias.
-- **Documentación:** Registro de cambios en el archivo `CHANGELOG.md`.
+### Paso 4: Configuración de SonarCloud
+
+1. Ve a [SonarCloud](https://sonarcloud.io) y accede a tu cuenta. Si no tienes una, regístrate con tu cuenta de GitHub.
+2. En el tablero de SonarCloud, haz clic en el botón `+` (ubicado en la esquina superior derecha) y selecciona `Analyze new project`.
+3. Autoriza a SonarCloud a acceder a tus repositorios de GitHub.
+4. Selecciona el repositorio que deseas analizar y haz clic en `Set Up`.
 
 ---
 
-#### **Imágenes sugeridas para complementar**
-1. Captura de las ramas creadas en el repositorio.
-2. Captura de un pull request abierto, mostrando los cambios propuestos.
-3. Captura de un pull request fusionado con éxito.
+#### 4.2 Generar un token para el análisis:
+1. Durante la configuración, SonarCloud te pedirá que generes un token de acceso:
+   - Asigna un nombre descriptivo al token, por ejemplo, `SonarToken`.
+   - Haz clic en `Generate` y copia el token generado (guárdalo en un lugar seguro, ya que no podrás verlo nuevamente).
 
+---
+
+#### 4.3 Configurar el token en GitHub:
+1. Ve a tu repositorio en GitHub y accede a la pestaña `Settings`.
+2. Navega a `Secrets and variables > Actions` y haz clic en `New repository secret`.
+3. Añade un nuevo secreto con los siguientes detalles:
+   - **Nombre:** `SONAR_TOKEN`
+   - **Valor:** Pega aquí el token generado en SonarCloud.
+4. Haz clic en `Add secret` para guardar.
+
+---
+
+#### 4.4 Configurar el archivo `sonar-project.properties`:
+1. Crea un archivo llamado `sonar-project.properties` en la raíz de tu repositorio.
+2. Añade el siguiente contenido, ajustando los valores según tu proyecto:
+
+```properties
+# Configuración básica de SonarCloud
+sonar.projectKey=your_project_key
+sonar.organization=your_organization
+sonar.host.url=https://sonarcloud.io
+
+# Directorios de código fuente y pruebas
+sonar.sources=src
+sonar.tests=tests
+sonar.test.inclusions=tests/**/*.py
+
+# Configuración de cobertura
+sonar.python.coverage.reportPaths=coverage.xml
+
+
+```
+- `sonar.projectKey`: El identificador único de tu proyecto en SonarCloud.
+- `sonar.organization`: Tu organización registrada en SonarCloud.
+- `sonar.python.coverage.reportPaths`: Asegúrate de que apunte al archivo de cobertura generado por `pytest`.
+
+---
+
+### 4.5 Validar la integración:
+1. Realiza un commit del archivo `sonar-project.properties`:
+   ```bash
+   git add sonar-project.properties
+   git commit -m "Add SonarCloud configuration"
+   git push origin main
+
+
+### Verifica que el workflow de GitHub Actions se ejecute correctamente:
+
+1. Ve a la pestaña `Actions` en tu repositorio de GitHub.
+2. Asegúrate de que el workflow complete todos los pasos sin errores:
+   - Comprueba los logs de cada paso (instalación, pruebas, análisis estático).
+   - Resuelve cualquier error que pueda aparecer.
+
+3. Accede a tu proyecto en [SonarCloud](https://sonarcloud.io).
+4. Revisa los resultados del análisis en el tablero:
+   - **Cobertura de código**: Verifica el porcentaje de líneas de código cubiertas por las pruebas.
+   - **Errores**: Identifica problemas de compilación o configuración en el análisis.
+   - **Vulnerabilidades**: Examina posibles riesgos de seguridad en tu código.
 
